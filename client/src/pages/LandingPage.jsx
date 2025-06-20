@@ -1,48 +1,49 @@
-import { Link } from 'react-router-dom';
-import heroImage from '../assets/hero-application.png'; // Save image in /client/src/assets/
+// src/components/LandingPage.jsx
+import heroImage from '../assets/hero-application.png';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1b1539] to-[#2d225b] text-white flex flex-col items-center justify-center px-6 py-10">
-      {/* Navbar */}
-      <div className="w-full flex justify-between items-center max-w-6xl mx-auto mb-10">
-        <div className="text-white font-extrabold text-2xl bg-black rounded-full px-4 py-1">snagged</div>
-        <div className="space-x-6 text-sm">
-          <Link to="/about" className="hover:text-gray-300">About</Link>
-          <Link to="/pricing" className="hover:text-gray-300">Pricing</Link>
-          <Link to="/signup" className="hover:text-gray-300">Sign Up</Link>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-[#1e1e2f] to-[#241b36] text-white font-sans flex flex-col">
+      {/* Header */}
+      <header className="flex items-center justify-between px-8 py-6">
+        <div className="text-2xl font-bold bg-black px-4 py-1 rounded-full">snagged</div>
+        <nav className="space-x-6 text-sm">
+          <a href="#about" className="hover:underline">About</a>
+          <a href="#pricing" className="hover:underline">Pricing</a>
+          <a href="#signup" className="hover:underline font-semibold">Sign Up</a>
+        </nav>
+      </header>
 
       {/* Hero Section */}
-      <div className="flex flex-col-reverse md:flex-row items-center justify-between max-w-6xl w-full gap-10">
-        {/* Left Text */}
-        <div className="max-w-xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-            Get Internships,<br /> <span className="text-white">Snagged</span>
+      <main className="flex flex-col-reverse lg:flex-row items-center justify-between px-8 lg:px-32 py-16 gap-12">
+        {/* Text Content */}
+        <div className="max-w-xl space-y-6">
+          <h1 className="text-5xl font-extrabold leading-tight">
+            Get Internships,<br /> Snagged
           </h1>
-          <p className="text-gray-300 mb-8 text-lg">
-            We use cheap overseas labor to apply to internships for students, so you can land more interviews with less effort.
+          <p className="text-lg text-gray-300">
+            We use cheap overseas labor to apply to internships for students,
+            so you can land more interviews with less effort.
           </p>
           <div className="space-x-4">
-            <Link to="/signup">
-              <button className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded font-semibold">
-                Get Started
-              </button>
-            </Link>
-            <Link to="/learn-more">
-              <button className="border border-white px-6 py-3 rounded font-semibold hover:bg-white hover:text-black transition">
-                Learn More
-              </button>
-            </Link>
+            <button className="bg-pink-500 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-pink-600 transition">
+              Get Started
+            </button>
+            <button className="border border-white px-6 py-3 rounded-full hover:bg-white hover:text-black transition">
+              Learn More
+            </button>
           </div>
         </div>
 
-        {/* Image */}
-        <div className="w-full max-w-md">
-          <img src={heroImage} alt="Internship Application Illustration" className="w-full" />
+        {/* Hero Image */}
+        <div className="max-w-md w-full">
+          <img
+            src={heroImage}
+            alt="Internship Application Illustration"
+            className="w-full h-auto object-contain"
+          />
         </div>
-      </div>
+      </main>
     </div>
   );
 }
