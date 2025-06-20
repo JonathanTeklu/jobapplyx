@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -11,12 +13,24 @@ function App() {
   }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">Frontend is Running ✅</h1>
-      <p className="mt-4 text-green-600">{message}</p>
-    </div>
+    <Router>
+      <Routes>
+        {/* Landing Page Route */}
+        <Route path="/" element={<LandingPage />} />
+
+        {/* Test backend route (for now only at /test) */}
+        <Route
+          path="/test"
+          element={
+            <div className="p-4">
+              <h1 className="text-2xl font-bold">Frontend is Running ✅</h1>
+              <p className="mt-4 text-green-600">{message}</p>
+            </div>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
-
