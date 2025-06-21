@@ -5,6 +5,15 @@ import heroImg from '../assets/hero-application.png';
 const LandingPage = () => {
   return (
     <div className="landing">
+      {/* Top Navigation */}
+      <nav className="top-nav">
+        <div className="logo">Snagged</div>
+        <div className="nav-buttons">
+          <a href="/login" className="nav-btn">Login</a>
+          <a href="/signup" className="nav-btn">Sign Up</a>
+        </div>
+      </nav>
+
       <header className="hero">
         <div className="hero-text">
           <h1>Snagged</h1>

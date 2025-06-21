@@ -18,6 +18,45 @@ body, html {
   overflow-x: hidden;
 }
 
+/* Top Navigation */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: transparent;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: white;
+  color: #222;
+}
+
 /* Hero */
 .hero {
   display: flex;
@@ -120,6 +159,65 @@ body, html {
   color: #fff;
 }
 
+/* Signup Page Styles */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+}
+
+.signup-form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #203a43;
+}
+
+.signup-form input,
+.signup-form select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: white;
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #ff6a00;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signup-form button:hover {
+  background-color: #e25a00;
+}
+
+.error {
+  color: red;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero {
@@ -143,5 +241,11 @@ body, html {
   .feature-box {
     width: 100%;
     max-width: none;
+  }
+
+  .top-nav {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
   }
 }
