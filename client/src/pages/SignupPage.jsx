@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import '../App.css';
+import '../App.css'; // Adjust path if needed
 
 const SignupPage = () => {
   const [role, setRole] = useState('student');
@@ -8,13 +7,9 @@ const SignupPage = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const isValidEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  const isValidPassword = (password) => {
-    return /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
-  };
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidPassword = (password) =>
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,6 +28,7 @@ const SignupPage = () => {
 
     setError('');
     console.log(`Signing up as ${role}:`, { email, password });
+    // Backend API call goes here
   };
 
   return (
@@ -40,16 +36,22 @@ const SignupPage = () => {
       <form className="signup-form" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
 
-        <label htmlFor="role">Select Role:</label>
-        <select
-          id="role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          className="signup-select"
-        >
-          <option value="student">Student</option>
-          <option value="assistant">Assistant</option>
-        </select>
+        <div className="role-toggle">
+          <button
+            type="button"
+            className={role === 'student' ? 'active-role' : ''}
+            onClick={() => setRole('student')}
+          >
+            Student
+          </button>
+          <button
+            type="button"
+            className={role === 'assistant' ? 'active-role' : ''}
+            onClick={() => setRole('assistant')}
+          >
+            Assistant
+          </button>
+        </div>
 
         <input
           type="email"
