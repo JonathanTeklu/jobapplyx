@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../App.css'; // Adjust path if needed
+import '../App.css';
 
 const SignupPage = () => {
   const [role, setRole] = useState('student');
@@ -29,6 +29,10 @@ const SignupPage = () => {
     setError('');
     console.log(`Signing up as ${role}:`, { email, password });
     // Backend API call goes here
+  };
+
+  const handleGoogleSignup = () => {
+    window.location.href = 'http://localhost:5000/auth/google';
   };
 
   return (
@@ -70,6 +74,16 @@ const SignupPage = () => {
         {error && <div className="error">{error}</div>}
 
         <button type="submit">Sign Up</button>
+
+        <div className="or-divider">or</div>
+
+        <button
+          type="button"
+          className="google-button"
+          onClick={handleGoogleSignup}
+        >
+          Sign up with Google
+        </button>
       </form>
     </div>
   );

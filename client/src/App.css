@@ -233,4 +233,45 @@ body {
     width: 100%;
     max-width: 350px;
   }
+  .or-divider {
+  text-align: center;
+  margin: 1rem 0;
+  color: #ccc;
+  position: relative;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.or-divider::before {
+  left: 0;
+}
+
+.or-divider::after {
+  right: 0;
+}
+
+.google-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #f3f3f3;
+  color: #1f3a44;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.google-button:hover {
+  background: #e0e0e0;
+}
+
 }
