@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import '../App.css'; // Adjust path if needed
+import '../App.css';
 
 const SignupPage = () => {
   const [role, setRole] = useState('student');
@@ -8,12 +9,10 @@ const SignupPage = () => {
   const [error, setError] = useState('');
 
   const isValidEmail = (email) => {
-    // Simple email validation
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
   const isValidPassword = (password) => {
-    // At least one uppercase, one number, one special character, and 8+ characters
     return /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
   };
 
@@ -34,7 +33,6 @@ const SignupPage = () => {
 
     setError('');
     console.log(`Signing up as ${role}:`, { email, password });
-    // Proceed to backend call here
   };
 
   return (
