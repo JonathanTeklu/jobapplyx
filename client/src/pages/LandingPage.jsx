@@ -8,7 +8,9 @@ const LandingPage = () => {
       <header className="hero">
         <div className="hero-text">
           <h1>Snagged</h1>
-          <p>Your all-in-one job application platform. Built for students, loved by everyone.</p>
+          <p>
+            Land more interviews with less effort — Snagged connects you with affordable help to apply for internships while you focus on what matters most.
+          </p>
           <a href="/signup" className="cta-button">Get Started</a>
         </div>
         <div className="hero-image">
@@ -18,16 +20,16 @@ const LandingPage = () => {
 
       <section className="features">
         <div className="feature-box">
-          <h3>🧠 <strong>Smart Matching</strong></h3>
-          <p>Snagged recommends jobs tailored to your profile using intelligent filters.</p>
+          <h3>🌍 <strong>Global Helpers</strong></h3>
+          <p>Find trusted overseas assistants to do your internship applications for you — faster and cheaper than you'd expect.</p>
         </div>
         <div className="feature-box">
-          <h3>⚡ <strong>Quick Apply</strong></h3>
-          <p>Apply to multiple listings in seconds. Boost your response rate effortlessly.</p>
+          <h3>💸 <strong>Price Flexibility</strong></h3>
+          <p>Every budget, every preference — you decide how much you're willing to pay. If one helper's rate is too high, browse others.</p>
         </div>
         <div className="feature-box">
-          <h3>📈 <strong>Progress Tracker</strong></h3>
-          <p>Track every job you’ve applied to — follow up and stay organized.</p>
+          <h3>🤝 <strong>Like a Social Network</strong></h3>
+          <p>Think Fiverr meets LinkedIn — but built for job application help. Review profiles, chat with helpers, and get your apps submitted stress-free.</p>
         </div>
       </section>
 
