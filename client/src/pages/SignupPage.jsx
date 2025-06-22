@@ -1,89 +1,87 @@
-import React, { useState } from 'react';
-import '../App.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+import "../App.css";
 
 const SignupPage = () => {
-  const [role, setRole] = useState('student');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "student",
+  });
 
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isValidPassword = (password) =>
-    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!isValidEmail(email)) {
-      setError('Please enter a valid email address.');
-      return;
-    }
-
-    if (!isValidPassword(password)) {
-      setError(
-        'Password must be at least 8 characters, include an uppercase letter, a number, and a special character.'
-      );
-      return;
-    }
-
-    setError('');
-    console.log(`Signing up as ${role}:`, { email, password });
-    // Backend API call goes here
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleGoogleSignup = () => {
-    window.location.href = 'http://localhost:5000/auth/google';
+  const handleRoleChange = (role) => {
+    setFormData({ ...formData, role });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/api/auth/signup", formData);
+      navigate("/login");
+    } catch (error) {
+      console.error("Signup failed:", error);
+    }
   };
 
   return (
     <div className="signup-container">
+      <div className="signup-header">
+        <Link to="/" className="brand-link">Snagged</Link>
+      </div>
+
+      <h2 className="signup-title">Create Your Snagged Account</h2>
+
+      <div className="role-toggle">
+        <button
+          className={`role-button ${formData.role === "student" ? "active" : ""}`}
+          onClick={() => handleRoleChange("student")}
+          type="button"
+        >
+          Student
+        </button>
+        <button
+          className={`role-button ${formData.role === "assistant" ? "active" : ""}`}
+          onClick={() => handleRoleChange("assistant")}
+          type="button"
+        >
+          Assistant
+        </button>
+      </div>
+
       <form className="signup-form" onSubmit={handleSubmit}>
-        <h2>Sign Up</h2>
-
-        <div className="role-toggle">
-          <button
-            type="button"
-            className={role === 'student' ? 'active-role' : ''}
-            onClick={() => setRole('student')}
-          >
-            Student
-          </button>
-          <button
-            type="button"
-            className={role === 'assistant' ? 'active-role' : ''}
-            onClick={() => setRole('assistant')}
-          >
-            Assistant
-          </button>
-        </div>
-
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
         <input
           type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          placeholder="Email Address"
+          value={formData.email}
+          onChange={handleChange}
+          required
         />
-
         <input
           type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          placeholder="Create Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
         />
-
-        {error && <div className="error">{error}</div>}
-
-        <button type="submit">Sign Up</button>
-
-        <div className="or-divider">or</div>
-
-        <button
-          type="button"
-          className="google-button"
-          onClick={handleGoogleSignup}
-        >
-          Sign up with Google
-        </button>
+        <button className="submit-button" type="submit">Sign Up</button>
       </form>
     </div>
   );
