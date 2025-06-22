@@ -218,22 +218,8 @@ body {
   color: #1f3a44;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero-image img {
-    max-width: 100%;
-  }
-
-  .feature-box {
-    width: 100%;
-    max-width: 350px;
-  }
-  .or-divider {
+/* OR Divider */
+.or-divider {
   text-align: center;
   margin: 1rem 0;
   color: #ccc;
@@ -258,6 +244,7 @@ body {
   right: 0;
 }
 
+/* Google Button */
 .google-button {
   width: 100%;
   padding: 0.75rem;
@@ -274,4 +261,19 @@ body {
   background: #e0e0e0;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+  }
+
+  .feature-box {
+    width: 100%;
+    max-width: 350px;
+  }
 }
