@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../App.css";
 
 const SignupPage = () => {
@@ -33,6 +33,10 @@ const SignupPage = () => {
 
   return (
     <div className="signup-container">
+      <div className="signup-header">
+        <Link to="/" className="brand-link">Snagged</Link>
+      </div>
+
       <h2 className="signup-title">Create Your Snagged Account</h2>
 
       <div className="role-toggle">
