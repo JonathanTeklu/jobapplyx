@@ -137,7 +137,7 @@ a {
   background-color: #f1f1f1;
 }
 
-/* Signup Page */
+/* Signup + Login Shared Styles */
 .signup-container {
   max-width: 500px;
   margin: 4rem auto;
@@ -153,37 +153,14 @@ a {
   margin-bottom: 1.5rem;
 }
 
-.role-toggle {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.role-button {
-  padding: 0.5rem 1.25rem;
-  font-weight: 500;
-  border: 2px solid #1a73e8;
-  background-color: white;
-  color: #1a73e8;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.role-button.active,
-.role-button:hover {
-  background-color: #1a73e8;
-  color: white;
-}
-
 .signup-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.signup-form input {
+.signup-form input,
+.signup-form select {
   padding: 0.75rem 1rem;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -191,7 +168,8 @@ a {
   transition: border-color 0.2s ease;
 }
 
-.signup-form input:focus {
+.signup-form input:focus,
+.signup-form select:focus {
   border-color: #1a73e8;
   outline: none;
 }
@@ -211,35 +189,17 @@ a {
   background-color: #0f5dd6;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
+.link-text {
+  font-size: 0.9rem;
+  text-align: center;
+}
 
-  .hero-image img {
-    max-width: 100%;
-  }
-
-  .feature-box {
-    width: 100%;
-    max-width: 350px;
-  }
-  .or-divider {
+/* Google Auth UI */
+.or-divider {
   text-align: center;
   margin: 1rem 0;
   color: #ccc;
   position: relative;
-}
-
-.or-divider::before,
-.or-divider::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  text-decoration: none;
 }
 
 .google-button {

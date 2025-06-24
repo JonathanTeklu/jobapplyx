@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../App.css';
 
@@ -10,20 +9,28 @@ const SignupPage = () => {
     password: '',
     role: 'student',
   });
-
   const navigate = useNavigate();
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleRoleChange = (role) =>
-    setFormData({ ...formData, role });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', formData);
-      navigate('/login');
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem('token', data.token);
+        navigate('/main');
+      } else {
+        alert(data.message || 'Signup failed');
+      }
     } catch (error) {
       console.error('Signup error:', error);
     }
@@ -31,32 +38,37 @@ const SignupPage = () => {
 
   return (
     <div className="signup-container">
-      <Link to="/" className="brand-link">Snagged</Link>
-      <h2 className="signup-title">Create Your Snagged Account</h2>
-
-      <div className="role-toggle">
-        <button
-          className={`role-button ${formData.role === 'student' ? 'active' : ''}`}
-          onClick={() => handleRoleChange('student')}
-          type="button"
-        >
-          Student
-        </button>
-        <button
-          className={`role-button ${formData.role === 'assistant' ? 'active' : ''}`}
-          onClick={() => handleRoleChange('assistant')}
-          type="button"
-        >
-          Assistant
-        </button>
-      </div>
-
+      <h2 className="signup-title">Sign Up</h2>
       <form className="signup-form" onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Create Password" value={formData.password} onChange={handleChange} required />
-        <button className="submit-button" type="submit">Sign Up</button>
-        <p className="link-text">Already have an account? <Link to="/login">Log in</Link></p>
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+          required
+        />
+        <select name="role" onChange={handleChange} required>
+          <option value="student">Student</option>
+          <option value="assistant">Assistant</option>
+        </select>
+        <button className="submit-button" type="submit">Create Account</button>
+        <p className="link-text">
+          Already have an account? <Link to="/login">Log In</Link>
+        </p>
       </form>
     </div>
   );

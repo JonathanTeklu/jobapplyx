@@ -1,12 +1,42 @@
-import React from 'react';
+// src/pages/MainPage.jsx
+import React, { useEffect, useState } from 'react';
+import { getUserRole } from '../utils/auth';
 
 const MainPage = () => {
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const userRole = getUserRole();
+    setRole(userRole);
+  }, []);
+
+  if (!role) return <div>Loading...</div>;
+
   return (
-    <div className="main-container">
-      <h1>Welcome to Snagged 🎉</h1>
-      <p>You’ve successfully logged in.</p>
+    <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
+      {role === 'student' ? (
+        <StudentDashboard />
+      ) : role === 'assistant' ? (
+        <AssistantDashboard />
+      ) : (
+        <div>Unauthorized</div>
+      )}
     </div>
   );
 };
+
+const StudentDashboard = () => (
+  <div>
+    <h1>Welcome, Student! 🎓</h1>
+    <p>Apply to jobs, track progress, and connect with assistants.</p>
+  </div>
+);
+
+const AssistantDashboard = () => (
+  <div>
+    <h1>Welcome, Assistant! 🧑‍🏫</h1>
+    <p>Browse student requests and offer application help.</p>
+  </div>
+);
 
 export default MainPage;
