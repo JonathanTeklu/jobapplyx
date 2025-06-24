@@ -218,21 +218,54 @@ a {
     text-align: center;
   }
 
-  .features {
-    flex-direction: column;
-    align-items: center;
+  .hero-image img {
+    max-width: 100%;
   }
-  .snagged-logo-link {
+
+  .feature-box {
+    width: 100%;
+    max-width: 350px;
+  }
+  .or-divider {
+  text-align: center;
+  margin: 1rem 0;
+  color: #ccc;
+  position: relative;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
   position: absolute;
   top: 20px;
   left: 30px;
   text-decoration: none;
 }
 
-.snagged-logo {
-  font-size: 1.5rem;
+.google-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #f3f3f3;
+  color: #1f3a44;
+  border: none;
+  border-radius: 6px;
   font-weight: bold;
   color: #000;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+  }
+
+  .feature-box {
+    width: 100%;
+    max-width: 350px;
+  }
 }
