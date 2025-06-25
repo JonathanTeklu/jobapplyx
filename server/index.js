@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: 'http://localhost:5174', credentials: true }));
 app.use(express.json());
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -23,16 +23,14 @@ app.use(passport.session());
 // Routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
-app.use('/auth', authRoutes); // Google login uses this path
+app.use('/auth', authRoutes);
 
-// Optional additional routes
 const protectedRoutes = require('./routes/protected');
 app.use('/api/protected', protectedRoutes);
 
 const messageRoutes = require('./routes/messages');
 app.use('/api/messages', messageRoutes);
 
-// Test route
 app.get('/', (req, res) => {
   res.send('Snagged API is running');
 });

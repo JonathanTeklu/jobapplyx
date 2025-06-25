@@ -1,13 +1,12 @@
 // src/pages/MainPage.jsx
 import React, { useEffect, useState } from 'react';
-import { getUserRole } from '../utils/auth';
 
 const MainPage = () => {
   const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const userRole = getUserRole();
-    setRole(userRole);
+    const storedRole = localStorage.getItem('role');
+    setRole(storedRole);
   }, []);
 
   if (!role) return <div>Loading...</div>;

@@ -24,7 +24,7 @@ router.post('/signup', async (req, res) => {
       expiresIn: '7d'
     });
 
-    res.status(201).json({ token }); // auto-login after signup
+    res.status(201).json({ token });
   } catch (err) {
     console.error('Signup error:', err);
     res.status(500).json({ error: 'Server error during signup' });

@@ -1,3 +1,4 @@
+// src/pages/LoginPage.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -23,6 +24,7 @@ const LoginPage = () => {
       });
 
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('role', res.data.user.role); // Store role for MainPage
       navigate('/main');
     } catch (error) {
       if (error.response && error.response.data?.error) {

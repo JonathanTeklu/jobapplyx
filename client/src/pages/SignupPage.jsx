@@ -17,22 +17,27 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('form submitted');
+
     try {
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch('http://localhost:5000/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       const data = await res.json();
+
       if (res.ok) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('role', formData.role);
         navigate('/main');
       } else {
-        alert(data.message || 'Signup failed');
+        alert(data.error || 'Signup failed');
       }
     } catch (error) {
       console.error('Signup error:', error);
+      alert('Error connecting to server');
     }
   };
 
@@ -65,7 +70,9 @@ const SignupPage = () => {
           <option value="student">Student</option>
           <option value="assistant">Assistant</option>
         </select>
-        <button className="submit-button" type="submit">Create Account</button>
+        <button className="submit-button" type="submit">
+          Create Account
+        </button>
         <p className="link-text">
           Already have an account? <Link to="/login">Log In</Link>
         </p>
