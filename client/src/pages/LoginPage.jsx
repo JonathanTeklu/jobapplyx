@@ -1,68 +1,80 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
-import "../App.css";
+// src/pages/LoginPage.jsx
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
+import '../App.css';
 
 const LoginPage = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const [error, setError] = useState("");
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setErrorMsg('');
+
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
-      localStorage.setItem("token", res.data.token);
-      navigate("/");
-    } catch (err) {
-      setError("Invalid email or password");
+      const res = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password,
+      });
+
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('role', res.data.user.role); // Store role for MainPage
+      navigate('/main');
+    } catch (error) {
+      if (error.response && error.response.data?.error) {
+        setErrorMsg(error.response.data.error);
+      } else {
+        setErrorMsg('Something went wrong. Please try again.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="signup-container">
-      <Link to="/" className="snagged-logo-link">
-        <span className="snagged-logo">Snagged</span>
-      </Link>
-
-      <h2 className="signup-title">Welcome Back to Snagged</h2>
+      <Link to="/" className="brand-link">Snagged</Link>
+      <h2 className="signup-title">Welcome Back</h2>
 
       <form className="signup-form" onSubmit={handleSubmit}>
+        {errorMsg && <div className="error-message">{errorMsg}</div>}
+
         <input
           type="email"
-          name="email"
           placeholder="Email Address"
-          value={formData.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
 
         <input
           type="password"
-          name="password"
-          placeholder="Enter Password"
-          value={formData.password}
-          onChange={handleChange}
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
 
-        {error && <p className="error">{error}</p>}
+        <button
+          className="submit-button"
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? 'Logging in...' : 'Log In'}
+        </button>
 
-        <button className="submit-button" type="submit">Log In</button>
-
-        <div className="login-links">
-          <Link to="/forgot-password">Forgot password?</Link>
-          <span> • </span>
-          <Link to="/signup">Create account</Link>
-        </div>
+        <p className="link-text">
+          Don’t have an account? <Link to="/signup">Sign up</Link>
+        </p>
+        <p className="link-text">
+          <a href="#">Forgot your password?</a>
+        </p>
       </form>
     </div>
   );
