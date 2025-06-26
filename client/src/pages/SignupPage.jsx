@@ -22,15 +22,19 @@ const SignupPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("http://localhost:5000/api/auth/signup", formData);
-      navigate("/login");
-    } catch (error) {
-      console.error("Signup failed:", error);
-    }
-  };
-
+  e.preventDefault();
+  try {
+    await axios.post("http://localhost:5000/api/auth/register", formData);
+    // Optionally show a success message here
+    // Redirect to login or main page
+    // navigate("/main"); // or navigate("/login");
+    alert("Signup successful! Please log in.");
+    navigate("/login");
+  } catch (error) {
+    alert(error.response?.data?.error || "Signup failed");
+    console.error("Signup failed:", error);
+  }
+};
   return (
     <div className="signup-container">
       <div className="signup-header">

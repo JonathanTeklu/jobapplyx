@@ -11,21 +11,17 @@ passport.use(new GoogleStrategy(
   },
   async (req, accessToken, refreshToken, profile, done) => {
     try {
-      const roleFromQuery = req.query.role || 'student'; // fallback role
-
+      const roleFromQuery = req.query.role || 'student';          // fallback role
       let user = await User.findOne({ googleId: profile.id });
-
       if (user) {
         return done(null, user);
       }
-
       user = await User.create({
         googleId: profile.id,
         name: profile.displayName,
         email: profile.emails[0].value,
         role: roleFromQuery
       });
-
       return done(null, user);
     } catch (err) {
       return done(err, null);
