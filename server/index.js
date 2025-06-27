@@ -4,16 +4,19 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 require('dotenv').config();
+
+// ✅ DEBUG LINE to confirm SESSION_SECRET is loading
+console.log('SESSION_SECRET:', process.env.SESSION_SECRET);
+
 require('./middleware/passport');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || /^http:\/\/localhost:\d+$/.test(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -21,12 +24,15 @@ app.use(cors({
   },
   credentials: true
 }));
+
 app.use(express.json());
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
