@@ -73,10 +73,26 @@ const SignupPage = () => {
         <button className="submit-button" type="submit">
           Create Account
         </button>
-        <p className="link-text">
-          Already have an account? <Link to="/login">Log In</Link>
-        </p>
       </form>
+
+
+
+      <button
+        type="button"
+        className="google-login-button"
+        onClick={() => window.location.href = 'http://localhost:5000/auth/google'}
+      >
+        <img
+          src="https://developers.google.com/identity/images/g-logo.png"
+          alt="Google logo"
+          className="google-logo"
+        />
+        Continue with Google
+      </button>
+
+      <p className="link-text">
+        Already have an account? <Link to="/login">Log In</Link>
+      </p>
     </div>
   );
 };
