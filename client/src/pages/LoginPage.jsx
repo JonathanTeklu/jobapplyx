@@ -69,6 +69,14 @@ const LoginPage = () => {
           {loading ? 'Logging in...' : 'Log In'}
         </button>
 
+        <button
+          type="button"
+          className="google-login-button"
+          onClick={() => window.location.href = 'http://localhost:5000/auth/google'}
+        >
+          Continue with Google
+        </button>
+
         <p className="link-text">
           Don’t have an account? <Link to="/signup">Sign up</Link>
         </p>
