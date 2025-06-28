@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const User = require('../models/User');
 
 const router = express.Router();
@@ -73,6 +75,67 @@ router.get('/google/callback', passport.authenticate('google', {
   });
 
   res.redirect(`http://localhost:5173/main?token=${token}&role=${req.user.role}`);
+});
+
+
+// -------------------------
+// 🔐 Forgot Password Route
+// -------------------------
+router.post('/forgot-password', async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) return res.status(404).json({ error: 'User not found' });
+
+  const token = crypto.randomBytes(32).toString('hex');
+  user.resetToken = token;
+  user.resetTokenExpiration = Date.now() + 3600000; // 1 hour
+  await user.save();
+
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: process.env.EMAIL_USER,   // Add to .env
+      pass: process.env.EMAIL_PASS    // Add to .env
+    }
+  });
+
+  const resetURL = `http://localhost:5173/reset-password/${token}`;
+  await transporter.sendMail({
+  from: '"Snagged Support" <support@snagged.dev>',  // <- Appears inside the email
+  to: user.email,
+  subject: 'Snagged Password Reset',                // <- Appears in inbox subject line
+  html: `
+    <p>You requested a password reset</p>
+    <p><a href="${resetURL}">Click here to reset</a></p>
+  `
+});
+
+
+  res.json({ message: 'Reset link sent to email' });
+});
+
+
+// -------------------------
+// 🔑 Reset Password Route
+// -------------------------
+router.post('/reset-password/:token', async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  const user = await User.findOne({
+    resetToken: token,
+    resetTokenExpiration: { $gt: Date.now() }
+  });
+
+  if (!user) return res.status(400).json({ error: 'Invalid or expired token' });
+
+  const hashed = await bcrypt.hash(password, 10);
+  user.password = hashed;
+  user.resetToken = undefined;
+  user.resetTokenExpiration = undefined;
+  await user.save();
+
+  res.json({ message: 'Password has been reset successfully' });
 });
 
 module.exports = router;

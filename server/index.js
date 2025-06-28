@@ -47,6 +47,7 @@ app.use('/api/protected', protectedRoutes);
 const messageRoutes = require('./routes/messages');
 app.use('/api/messages', messageRoutes);
 
+
 app.get('/', (req, res) => {
   res.send('Snagged API is running');
 });
