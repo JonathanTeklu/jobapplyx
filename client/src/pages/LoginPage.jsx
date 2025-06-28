@@ -24,7 +24,7 @@ const LoginPage = () => {
       });
 
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('role', res.data.user.role); // Store role for MainPage
+      localStorage.setItem('role', res.data.user.role);
       navigate('/main');
     } catch (error) {
       if (error.response && error.response.data?.error) {
@@ -74,6 +74,11 @@ const LoginPage = () => {
           className="google-login-button"
           onClick={() => window.location.href = 'http://localhost:5000/auth/google'}
         >
+          <img
+            src="https://developers.google.com/identity/images/g-logo.png"
+            alt="Google logo"
+            className="google-logo"
+          />
           Continue with Google
         </button>
 
