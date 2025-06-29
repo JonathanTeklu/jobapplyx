@@ -7,9 +7,9 @@ const userSchema = new mongoose.Schema({
   googleId: { type: String }, // For Google OAuth
   role: { type: String, enum: ['student', 'assistant'], required: true },
 
-  // Add these two fields for password reset
+  // Password reset fields
   resetToken: { type: String },
-  resetTokenExpire: { type: Date }
+  resetTokenExpiration: { type: Date },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

@@ -43,7 +43,13 @@ const SignupPage = () => {
 
   return (
     <div className="signup-container">
+      {/* ✅ Logo inside container */}
+      <Link to="/" className="logo" style={{ marginBottom: '1rem', display: 'inline-block' }}>
+        Snagged
+      </Link>
+
       <h2 className="signup-title">Sign Up</h2>
+
       <form className="signup-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -74,8 +80,6 @@ const SignupPage = () => {
           Create Account
         </button>
       </form>
-
-
 
       <button
         type="button"

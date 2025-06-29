@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './MainPage.css'; // or './App.css' if styles are there
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ const ForgotPasswordPage = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button type="submit">Send Reset Link</button>
+        <button className="primary-btn" type="submit">Send Reset Link</button>
         {message && <p>{message}</p>}
       </form>
     </div>
