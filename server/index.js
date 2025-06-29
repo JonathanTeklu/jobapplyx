@@ -4,25 +4,15 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 require('dotenv').config();
-
-// ✅ DEBUG LINE to confirm SESSION_SECRET is loading
-console.log('SESSION_SECRET:', process.env.SESSION_SECRET);
-
 require('./middleware/passport');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// CORS Configuration
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || /^http:\/\/localhost:\d+$/.test(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
+  origin: 'http://localhost:5173',
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -39,7 +29,6 @@ app.use(passport.session());
 // Routes
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
-app.use('/auth', authRoutes);
 
 const protectedRoutes = require('./routes/protected');
 app.use('/api/protected', protectedRoutes);
@@ -47,12 +36,11 @@ app.use('/api/protected', protectedRoutes);
 const messageRoutes = require('./routes/messages');
 app.use('/api/messages', messageRoutes);
 
-
 app.get('/', (req, res) => {
   res.send('Snagged API is running');
 });
 
-// MongoDB
+// MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('Connected to MongoDB ✅');

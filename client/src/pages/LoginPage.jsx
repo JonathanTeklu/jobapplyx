@@ -1,4 +1,3 @@
-// src/pages/LoginPage.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -39,7 +38,11 @@ const LoginPage = () => {
 
   return (
     <div className="signup-container">
-      <Link to="/" className="brand-link">Snagged</Link>
+      {/* ✅ Moved inside container for layout consistency */}
+      <Link to="/" className="logo" style={{ marginBottom: '1rem', display: 'inline-block' }}>
+        Snagged
+      </Link>
+
       <h2 className="signup-title">Welcome Back</h2>
 
       <form className="signup-form" onSubmit={handleSubmit}>
