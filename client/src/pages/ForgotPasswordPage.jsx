@@ -10,7 +10,7 @@ const ForgotPasswordPage = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('https://snagged.dev/api/auth/forgot-password', {
+      const res = await axios.post('https://snagged.onrender.com/api/auth/forgot-password', {
         email,
       });
       setMessage(res.data.message || 'Reset email sent if user exists.');

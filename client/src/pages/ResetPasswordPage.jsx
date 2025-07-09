@@ -19,7 +19,7 @@ const ResetPasswordPage = () => {
     }
 
     try {
-      const res = await axios.post(`https://snagged.dev/api/auth/reset-password/${token}`, {
+      const res = await axios.post(`https://snagged.onrender.com/api/auth/reset-password/${token}`, {
         password,
       });
 

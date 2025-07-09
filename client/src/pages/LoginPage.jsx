@@ -17,7 +17,7 @@ const LoginPage = () => {
     setErrorMsg('');
 
     try {
-      const res = await axios.post('https://snagged.dev/api/auth/login', {
+      const res = await axios.post('https://snagged.onrender.com/api/auth/login', {
         email,
         password,
       });
@@ -75,7 +75,7 @@ const LoginPage = () => {
         <button
           type="button"
           className="google-login-button"
-          onClick={() => window.location.href = 'https://snagged.dev/auth/google'}
+          onClick={() => window.location.href = 'https://snagged.onrender.com/auth/google'}
         >
           <img
             src="https://developers.google.com/identity/images/g-logo.png"
