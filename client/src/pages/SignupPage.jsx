@@ -84,7 +84,7 @@ const SignupPage = () => {
       <button
         type="button"
         className="google-login-button"
-        onClick={() => window.location.href = 'https://snagged.onrender.com/auth/google'}
+        onClick={() => window.location.href = 'https://snagged.onrender.com/api/auth/google'}
       >
         <img
           src="https://developers.google.com/identity/images/g-logo.png"
