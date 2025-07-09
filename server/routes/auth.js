@@ -74,7 +74,7 @@ router.get('/google/callback', passport.authenticate('google', {
     expiresIn: '7d',
   });
 
-  res.redirect(`http://localhost:5173/main?token=${token}&role=${req.user.role}`);
+  res.redirect(`https://snagged.dev/main?token=${token}&role=${req.user.role}`);
 });
 
 // Forgot Password Route
@@ -99,7 +99,7 @@ router.post('/forgot-password', async (req, res) => {
       },
     });
 
-    const resetURL = `http://localhost:5173/reset-password/${token}`;
+    const resetURL = `https://snagged.dev/reset-password/${token}`;
     await transporter.sendMail({
       from: '"Snagged Support" <support@snagged.dev>',
       to: user.email,

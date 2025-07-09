@@ -9,7 +9,7 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 // Callback route
 router.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect: 'http://localhost:5173/', // frontend URL
+    successRedirect: 'https://snagged.dev/', // frontend URL
     failureRedirect: '/login'
   })
 );

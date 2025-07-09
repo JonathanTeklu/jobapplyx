@@ -20,7 +20,7 @@ const SignupPage = () => {
     console.log('form submitted');
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/signup', {
+      const res = await fetch('https://snagged.dev/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -84,7 +84,7 @@ const SignupPage = () => {
       <button
         type="button"
         className="google-login-button"
-        onClick={() => window.location.href = 'http://localhost:5000/auth/google'}
+        onClick={() => window.location.href = 'https://snagged.dev/auth/google'}
       >
         <img
           src="https://developers.google.com/identity/images/g-logo.png"
