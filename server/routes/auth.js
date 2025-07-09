@@ -8,6 +8,8 @@ const User = require('../models/User');
 
 const router = express.Router();
 
+const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+
 // Signup
 router.post('/signup', async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -24,7 +26,7 @@ router.post('/signup', async (req, res) => {
     const user = await User.create({ name, email, password: hashedPassword, role });
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: '7d'
+      expiresIn: '7d',
     });
 
     res.status(201).json({ token });
@@ -50,7 +52,7 @@ router.post('/login', async (req, res) => {
     if (!match) return res.status(400).json({ error: 'Invalid credentials' });
 
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: '7d'
+      expiresIn: '7d',
     });
 
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
@@ -66,16 +68,19 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 // Google OAuth Callback
-router.get('/google/callback', passport.authenticate('google', {
-  failureRedirect: '/login',
-  session: false,
-}), (req, res) => {
-  const token = jwt.sign({ id: req.user._id, role: req.user.role }, process.env.JWT_SECRET, {
-    expiresIn: '7d',
-  });
+router.get('/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/login',
+    session: false,
+  }),
+  (req, res) => {
+    const token = jwt.sign({ id: req.user._id, role: req.user.role }, process.env.JWT_SECRET, {
+      expiresIn: '7d',
+    });
 
-  res.redirect(`https://snagged.dev/main?token=${token}&role=${req.user.role}`);
-});
+    res.redirect(`${CLIENT_URL}/main?token=${token}&role=${req.user.role}`);
+  }
+);
 
 // Forgot Password Route
 router.post('/forgot-password', async (req, res) => {
@@ -99,7 +104,7 @@ router.post('/forgot-password', async (req, res) => {
       },
     });
 
-    const resetURL = `https://snagged.dev/reset-password/${token}`;
+    const resetURL = `${CLIENT_URL}/reset-password/${token}`;
     await transporter.sendMail({
       from: '"Snagged Support" <support@snagged.dev>',
       to: user.email,
