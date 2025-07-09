@@ -68,19 +68,16 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 // Google OAuth Callback
-router.get('/google/callback',
-  passport.authenticate('google', {
-    failureRedirect: '/login',
-    session: false,
-  }),
-  (req, res) => {
-    const token = jwt.sign({ id: req.user._id, role: req.user.role }, process.env.JWT_SECRET, {
-      expiresIn: '7d',
-    });
+router.get('/google/callback', passport.authenticate('google', {
+  failureRedirect: '/login',
+  session: false,
+}), (req, res) => {
+  const token = jwt.sign({ id: req.user._id, role: req.user.role }, process.env.JWT_SECRET, {
+    expiresIn: '7d',
+  });
 
-    res.redirect(`${CLIENT_URL}/main?token=${token}&role=${req.user.role}`);
-  }
-);
+  res.redirect(`https://snagged.dev/main?token=${token}&role=${req.user.role}`);
+});
 
 // Forgot Password Route
 router.post('/forgot-password', async (req, res) => {
