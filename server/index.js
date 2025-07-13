@@ -1,11 +1,10 @@
-require('dotenv').config(); // THIS LINE MUST BE AT THE VERY TOP!
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
-require('./middleware/passport'); // This line now runs AFTER dotenv has loaded variables
+require('dotenv').config();
+require('./middleware/passport');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
