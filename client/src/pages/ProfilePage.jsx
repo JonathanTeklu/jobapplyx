@@ -1,3 +1,4 @@
+// src/pages/ProfilePage.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAvatar from '../assets/default-avatar.png';
@@ -5,6 +6,12 @@ import defaultAvatar from '../assets/default-avatar.png';
 const ProfilePage = () => {
   const navigate = useNavigate();
   const storedUser = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+    if (!storedUser) {
+      navigate('/login');
+    }
+  }, [storedUser, navigate]);
 
   const [username, setUsername] = useState(storedUser?.name || '');
   const [email, setEmail] = useState(storedUser?.email || '');
@@ -22,7 +29,6 @@ const ProfilePage = () => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    // This would usually send a request to backend to update profile
     localStorage.setItem('user', JSON.stringify({ name: username, email }));
     setMessage('Profile updated successfully');
   };

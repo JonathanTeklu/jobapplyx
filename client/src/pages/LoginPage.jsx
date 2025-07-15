@@ -1,3 +1,4 @@
+// src/pages/LoginPage.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -23,6 +24,7 @@ const LoginPage = () => {
       });
 
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.user)); // ✅ store user object
       localStorage.setItem('role', res.data.user.role);
       navigate('/main');
     } catch (error) {
@@ -38,7 +40,6 @@ const LoginPage = () => {
 
   return (
     <div className="signup-container">
-      {/* ✅ Moved inside container for layout consistency */}
       <Link to="/" className="logo" style={{ marginBottom: '1rem', display: 'inline-block' }}>
         Snagged
       </Link>
@@ -64,18 +65,16 @@ const LoginPage = () => {
           required
         />
 
-        <button
-          className="submit-button"
-          type="submit"
-          disabled={loading}
-        >
+        <button className="submit-button" type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Log In'}
         </button>
 
         <button
           type="button"
           className="google-login-button"
-          onClick={() => window.location.href = 'https://snagged.onrender.com/api/auth/google'}
+          onClick={() =>
+            (window.location.href = 'https://snagged.onrender.com/api/auth/google')
+          }
         >
           <img
             src="https://developers.google.com/identity/images/g-logo.png"
