@@ -19,7 +19,7 @@ const ResetPasswordPage = () => {
     }
 
     try {
-      const res = await axios.post(`https://snagged.onrender.com/api/auth/reset-password/${token}`, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/reset-password/${token}`, {
         password,
       });
 
@@ -32,7 +32,7 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div className="signup-container">
+    <div className="signup-container" style={{ padding: '2rem', backgroundColor: '#fff', color: '#000' }}>
       <h2>Set New Password</h2>
       <form className="signup-form" onSubmit={handleSubmit}>
         <input
