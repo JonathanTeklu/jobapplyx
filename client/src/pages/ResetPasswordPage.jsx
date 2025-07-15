@@ -1,4 +1,3 @@
-// src/pages/ResetPasswordPage.jsx
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -32,8 +31,8 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <div className="signup-container" style={{ padding: '2rem', backgroundColor: '#fff', color: '#000' }}>
-      <h2 style={{ fontFamily: "'Ubuntu', sans-serif", marginBottom: '1rem' }}>Set New Password</h2>
+    <div className="signup-container">
+      <h2 className="signup-title">Reset Your Password</h2>
       <form className="signup-form" onSubmit={handleSubmit}>
         <input
           type="password"
@@ -41,46 +40,16 @@ const ResetPasswordPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          style={{
-            padding: '0.75rem',
-            marginBottom: '1rem',
-            width: '100%',
-            borderRadius: '8px',
-            border: '1px solid #ccc',
-          }}
         />
         <input
           type="password"
-          placeholder="Confirm password"
+          placeholder="Confirm new password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-          style={{
-            padding: '0.75rem',
-            marginBottom: '1rem',
-            width: '100%',
-            borderRadius: '8px',
-            border: '1px solid #ccc',
-          }}
         />
-        <button
-          type="submit"
-          style={{
-            backgroundColor: '#000',
-            color: '#fff',
-            padding: '0.75rem',
-            border: 'none',
-            borderRadius: '8px',
-            width: '100%',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            fontFamily: "'Ubuntu', sans-serif",
-            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
-          }}
-        >
-          Reset Password
-        </button>
-        {message && <p style={{ marginTop: '1rem', fontFamily: "'Ubuntu', sans-serif" }}>{message}</p>}
+        <button type="submit" className="primary-btn">Reset Password</button>
+        {message && <p className="link-text">{message}</p>}
       </form>
     </div>
   );
