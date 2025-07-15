@@ -5,7 +5,8 @@ import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
-import ProfilePage from './pages/ProfilePage'; // ✅ Add this
+import ProfilePage from './pages/ProfilePage';
+import MessagesPage from './pages/MessagesPage'; // ✅ Add this
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
-        <Route path="/profile" element={<ProfilePage />} /> {/* ✅ Add this route */}
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/messages" element={<MessagesPage />} /> {/* ✅ New route */}
       </Routes>
     </Router>
   );
