@@ -93,6 +93,9 @@ router.post('/forgot-password', async (req, res) => {
     user.resetTokenExpiration = Date.now() + 3600000; // 1 hour
     await user.save();
 
+    // ✅ Add reset URL here
+    const resetURL = `${CLIENT_URL}/reset-password/${token}`;
+
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
@@ -101,7 +104,6 @@ router.post('/forgot-password', async (req, res) => {
       },
     });
 
-    const resetURL = `${CLIENT_URL}/reset-password/${token}`;
     await transporter.sendMail({
       from: '"Snagged Support" <support@snagged.dev>',
       to: user.email,
