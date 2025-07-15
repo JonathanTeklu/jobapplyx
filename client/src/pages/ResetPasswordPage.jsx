@@ -33,7 +33,7 @@ const ResetPasswordPage = () => {
 
   return (
     <div className="signup-container" style={{ padding: '2rem', backgroundColor: '#fff', color: '#000' }}>
-      <h2>Set New Password</h2>
+      <h2 style={{ fontFamily: "'Ubuntu', sans-serif", marginBottom: '1rem' }}>Set New Password</h2>
       <form className="signup-form" onSubmit={handleSubmit}>
         <input
           type="password"
@@ -41,6 +41,13 @@ const ResetPasswordPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          style={{
+            padding: '0.75rem',
+            marginBottom: '1rem',
+            width: '100%',
+            borderRadius: '8px',
+            border: '1px solid #ccc',
+          }}
         />
         <input
           type="password"
@@ -48,9 +55,32 @@ const ResetPasswordPage = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
+          style={{
+            padding: '0.75rem',
+            marginBottom: '1rem',
+            width: '100%',
+            borderRadius: '8px',
+            border: '1px solid #ccc',
+          }}
         />
-        <button type="submit">Reset Password</button>
-        {message && <p>{message}</p>}
+        <button
+          type="submit"
+          style={{
+            backgroundColor: '#000',
+            color: '#fff',
+            padding: '0.75rem',
+            border: 'none',
+            borderRadius: '8px',
+            width: '100%',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            fontFamily: "'Ubuntu', sans-serif",
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
+          }}
+        >
+          Reset Password
+        </button>
+        {message && <p style={{ marginTop: '1rem', fontFamily: "'Ubuntu', sans-serif" }}>{message}</p>}
       </form>
     </div>
   );
