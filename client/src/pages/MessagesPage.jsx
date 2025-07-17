@@ -1,5 +1,6 @@
 // Basic messaging UI - merge conflicts resolved
 import React, { useState, useEffect, useCallback } from 'react';
+import { API_BASE } from '../utils/api';
 
 const MessagesPage = () => {
   const [messages, setMessages] = useState([]);
@@ -10,7 +11,7 @@ const MessagesPage = () => {
   const fetchMessages = useCallback(async () => {
     if (!to) return;
     try {
-      const res = await fetch(`https://snagged.onrender.com/api/messages/${to}`, {
+      const res = await fetch(`${API_BASE}/messages/${to}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -27,7 +28,7 @@ const MessagesPage = () => {
   const handleSend = async (e) => {
     e.preventDefault();
     try {
-      await fetch('https://snagged.onrender.com/api/messages', {
+      await fetch(`${API_BASE}/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

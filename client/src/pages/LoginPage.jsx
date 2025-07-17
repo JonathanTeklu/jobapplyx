@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../App.css';
+import { API_BASE } from '../utils/api';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const LoginPage = () => {
     setErrorMsg('');
 
     try {
-      const res = await axios.post('https://snagged.onrender.com/api/auth/login', {
+      const res = await axios.post(`${API_BASE}/auth/login`, {
         email,
         password,
       });
@@ -73,7 +74,7 @@ const LoginPage = () => {
           type="button"
           className="google-login-button"
           onClick={() =>
-            (window.location.href = 'https://snagged.onrender.com/api/auth/google')
+            (window.location.href = `${API_BASE}/auth/google`)
           }
         >
           <img

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../App.css';
+import { API_BASE } from '../utils/api';
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const ForgotPasswordPage = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('https://snagged.onrender.com/api/auth/forgot-password', {
+      const res = await axios.post(`${API_BASE}/auth/forgot-password`, {
         email,
       });
       setMessage(res.data.message || 'Reset email sent if user exists.');
