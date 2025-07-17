@@ -1,5 +1,5 @@
 // Editable user profile - merge conflicts resolved
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAvatar from '../assets/default-avatar.png';
 
@@ -26,8 +26,11 @@ const ProfilePage = () => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    // This would usually send a request to backend to update profile
-    localStorage.setItem('user', JSON.stringify({ name: username, email, bio, major, location }));
+    // In real deployment, this would send a PATCH to the backend
+    localStorage.setItem(
+      'user',
+      JSON.stringify({ name: username, email, bio, major, location })
+    );
     setMessage('Profile updated successfully');
   };
 

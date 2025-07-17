@@ -1,4 +1,4 @@
-// Dashboard with role-based views - merge conflicts resolved
+// Dashboard with role-based views - conflicts resolved and merged
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MainPage.css';
@@ -68,6 +68,7 @@ const SnaggerDashboard = () => {
     if (filters.location) params.append('location', filters.location);
     if (filters.major) params.append('major', filters.major);
     if (filters.campus) params.append('campus', filters.campus);
+
     try {
       const res = await fetch(`https://snagged.onrender.com/api/tasks?${params.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },

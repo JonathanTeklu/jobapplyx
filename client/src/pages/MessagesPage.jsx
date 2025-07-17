@@ -20,7 +20,9 @@ const MessagesPage = () => {
     }
   }, [token, to]);
 
-  useEffect(() => { fetchMessages(); }, [fetchMessages]);
+  useEffect(() => {
+    fetchMessages();
+  }, [fetchMessages]);
 
   const handleSend = async (e) => {
     e.preventDefault();

@@ -15,8 +15,10 @@ const PostTaskPage = () => {
     budget: '',
     notes: '',
   });
+
   const navigate = useNavigate();
   const role = localStorage.getItem('role');
+
   if (role !== 'student') {
     return <div className="signup-container">Unauthorized</div>;
   }

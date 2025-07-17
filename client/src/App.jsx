@@ -1,4 +1,4 @@
-// Resolved merge conflicts - routes are protected with PrivateRoute
+// App.jsx – Resolved merge conflicts, all routes protected properly
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import SignupPage from './pages/SignupPage';
@@ -7,7 +7,7 @@ import MainPage from './pages/MainPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import ProfilePage from './pages/ProfilePage';
-import MessagesPage from './pages/MessagesPage'; // ✅ Add this
+import MessagesPage from './pages/MessagesPage';
 import PostTaskPage from './pages/PostTaskPage';
 import PrivateRoute from './components/PrivateRoute';
 
