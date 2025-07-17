@@ -7,6 +7,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import ProfilePage from './pages/ProfilePage';
 import MessagesPage from './pages/MessagesPage'; // ✅ Add this
+import PostTaskPage from './pages/PostTaskPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/messages" element={<MessagesPage />} /> {/* ✅ New route */}
+        <Route path="/tasks/new" element={<PostTaskPage />} />
       </Routes>
     </Router>
   );
