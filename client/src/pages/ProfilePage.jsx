@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// Editable user profile - merge conflicts resolved
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAvatar from '../assets/default-avatar.png';
 
@@ -9,6 +10,9 @@ const ProfilePage = () => {
   const [username, setUsername] = useState(storedUser?.name || '');
   const [email, setEmail] = useState(storedUser?.email || '');
   const [profilePic, setProfilePic] = useState(defaultAvatar);
+  const [bio, setBio] = useState(storedUser?.bio || '');
+  const [major, setMajor] = useState(storedUser?.major || '');
+  const [location, setLocation] = useState(storedUser?.location || '');
   const [message, setMessage] = useState('');
 
   const handleImageChange = (e) => {
@@ -23,7 +27,7 @@ const ProfilePage = () => {
   const handleSave = (e) => {
     e.preventDefault();
     // This would usually send a request to backend to update profile
-    localStorage.setItem('user', JSON.stringify({ name: username, email }));
+    localStorage.setItem('user', JSON.stringify({ name: username, email, bio, major, location }));
     setMessage('Profile updated successfully');
   };
 
@@ -64,12 +68,31 @@ const ProfilePage = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <input
+          type="text"
+          placeholder="Major"
+          value={major}
+          onChange={(e) => setMajor(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <textarea
+          placeholder="Bio"
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+          rows="3"
+        />
 
         <button type="submit" className="submit-button">Save Changes</button>
         <button type="button" className="primary-btn" onClick={handleResetPassword}>Reset Password</button>
         <button type="button" className="primary-btn" onClick={handleLogout}>Logout</button>
 
         {message && <p style={{ color: 'green', textAlign: 'center' }}>{message}</p>}
+        <p style={{ textAlign: 'center', marginTop: '1rem' }}>⭐ 4.5/5 from 10 reviews</p>
       </form>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import '../App.css';
 
 const LoginPage = () => {
@@ -10,6 +10,8 @@ const LoginPage = () => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/main';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ const LoginPage = () => {
 
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.user.role);
-      navigate('/main');
+      navigate(from, { replace: true });
     } catch (error) {
       if (error.response && error.response.data?.error) {
         setErrorMsg(error.response.data.error);

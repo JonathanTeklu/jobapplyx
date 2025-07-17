@@ -17,7 +17,7 @@ const LandingPage = () => {
         <div className="hero-text">
           <h1>Snagged</h1>
           <p>
-            Land more interviews with less effort — Snagged connects you with affordable help to apply for internships while you focus on what matters most.
+            Apply like a boss without lifting a finger. Snagged pairs you with fellow students ready to grind through applications so you can vibe and study.
           </p>
           <a href="/signup" className="cta-button">Get Started</a>
         </div>
@@ -28,8 +28,8 @@ const LandingPage = () => {
 
       <section className="features">
         <div className="feature-box">
-          <h3>🌍 <strong>Global Helpers</strong></h3>
-          <p>Find trusted overseas assistants to do your internship applications for you — faster and cheaper than you'd expect.</p>
+          <h3>🌍 <strong>Global Snaggers</strong></h3>
+          <p>Find trusted Snaggers worldwide to knock out your internship apps — way faster and cheaper than doing it solo.</p>
         </div>
         <div className="feature-box">
           <h3>💸 <strong>Price Flexibility</strong></h3>
@@ -37,7 +37,7 @@ const LandingPage = () => {
         </div>
         <div className="feature-box">
           <h3>🤝 <strong>Like a Social Network</strong></h3>
-          <p>Think Fiverr meets LinkedIn — but built for job application help. Review profiles, chat with helpers, and get your apps submitted stress-free.</p>
+          <p>Think Fiverr meets LinkedIn — but built for job applications. Scope profiles, chat with Snaggers, and get your apps sent stress-free.</p>
         </div>
       </section>
 

@@ -41,6 +41,9 @@ app.use('/api/protected', protectedRoutes);
 const messageRoutes = require('./routes/messages');
 app.use('/api/messages', messageRoutes);
 
+const taskRoutes = require('./routes/tasks');
+app.use('/api/tasks', taskRoutes);
+
 // Default route
 app.get('/', (req, res) => {
   res.send('Snagged API is running');
