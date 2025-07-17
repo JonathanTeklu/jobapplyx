@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import { API_BASE } from '../utils/api';
 
 const PostTaskPage = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ const PostTaskPage = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch('https://snagged.onrender.com/api/tasks', {
+      const res = await fetch(`${API_BASE}/tasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
