@@ -40,7 +40,7 @@ const LoginPage = () => {
 
   return (
     <div className="signup-container">
-      <Link to="/" className="logo" style={{ marginBottom: '1rem', display: 'inline-block' }}>
+      <Link to="/" className="logo logo-link">
         Snagged
       </Link>
 

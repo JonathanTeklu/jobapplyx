@@ -44,25 +44,25 @@ const MessagesPage = () => {
 
   return (
     <div className="signup-container">
-      <h2 style={{ textAlign: 'center' }}>Messages</h2>
+      <h2 className="text-center">Messages</h2>
       <input
         type="text"
         placeholder="Recipient user ID"
         value={to}
         onChange={(e) => setTo(e.target.value)}
-        style={{ marginBottom: '1rem' }}
+        className="text-input mb-1"
       />
       <div className="message-list">
         {messages.map((msg) => (
           <div key={msg._id} className="message-card">
             <div>
               <strong>{msg.from === to ? 'Them' : 'You'}</strong>
-              <p style={{ margin: '0.25rem 0' }}>{msg.content}</p>
+              <p>{msg.content}</p>
             </div>
           </div>
         ))}
       </div>
-      <form onSubmit={handleSend} style={{ marginTop: '1rem' }}>
+      <form onSubmit={handleSend} className="mt-1">
         <input
           type="text"
           placeholder="Type a message..."

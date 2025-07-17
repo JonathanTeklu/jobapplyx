@@ -44,7 +44,7 @@ const SignupPage = () => {
   return (
     <div className="signup-container">
       {/* ✅ Logo inside container */}
-      <Link to="/" className="logo" style={{ marginBottom: '1rem', display: 'inline-block' }}>
+      <Link to="/" className="logo logo-link">
         Snagged
       </Link>
 
