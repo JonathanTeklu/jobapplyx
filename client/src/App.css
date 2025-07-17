@@ -1,12 +1,13 @@
 :root {
-  --primary-color: #6366f1;
-  --primary-hover: #4f46e5;
-  --bg-color: #f9fafb;
-  --card-bg: #ffffff;
-  --text-color: #1f2937;
-  --border-color: #e5e7eb;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-md: 0 2px 6px rgba(0,0,0,0.15);
+  /* Dark mode palette */
+  --primary-color: #4b5563;
+  --primary-hover: #6b7280;
+  --bg-color: #111827;
+  --card-bg: #1f2937;
+  --text-color: #f3f4f6;
+  --border-color: #374151;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 2px 6px rgba(0,0,0,0.5);
 }
 
 html {
@@ -116,7 +117,7 @@ a {
 .hero-text p {
   font-size: 1.125rem;
   margin-bottom: 2rem;
-  color: #4b5563;
+  color: #d1d5db;
 }
 
 .hero-image img {
@@ -181,7 +182,8 @@ a {
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   font-size: 1rem;
-  background-color: #fff;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -190,13 +192,13 @@ a {
 .signup-form textarea:focus,
 .text-input:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.2);
   outline: none;
 }
 
 .google-login-button {
   margin-top: 0.5rem;
-  background-color: #fff;
+  background-color: var(--bg-color);
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
   display: flex;
@@ -205,7 +207,7 @@ a {
 }
 
 .google-login-button:hover {
-  background-color: rgba(99, 102, 241, 0.1);
+  background-color: var(--primary-hover);
 }
 
 .google-logo {
