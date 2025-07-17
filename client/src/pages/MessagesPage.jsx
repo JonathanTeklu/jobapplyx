@@ -1,4 +1,4 @@
-// src/pages/MessagesPage.jsx
+// Basic messaging UI - merge conflicts resolved
 import React, { useState, useEffect, useCallback } from 'react';
 
 const MessagesPage = () => {

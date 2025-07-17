@@ -1,3 +1,4 @@
+// Dashboard with role-based views - merge conflicts resolved
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MainPage.css';

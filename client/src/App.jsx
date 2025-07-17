@@ -1,3 +1,4 @@
+// Resolved merge conflicts - routes are protected with PrivateRoute
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import SignupPage from './pages/SignupPage';

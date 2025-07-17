@@ -1,3 +1,4 @@
+// Task schema - merge conflicts resolved
 const mongoose = require('mongoose');
 
 const taskSchema = new mongoose.Schema({

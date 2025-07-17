@@ -1,3 +1,4 @@
+// Editable user profile - merge conflicts resolved
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAvatar from '../assets/default-avatar.png';
