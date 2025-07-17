@@ -5,7 +5,11 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String }, // Optional for Google users
   googleId: { type: String }, // For Google OAuth
-  role: { type: String, enum: ['student', 'assistant'], required: true },
+  role: { type: String, enum: ['student', 'snagger'], required: true },
+  bio: { type: String },
+  major: { type: String },
+  location: { type: String },
+  reviews: [{ type: Number }],
 
   // Password reset fields
   resetToken: { type: String },

@@ -74,7 +74,7 @@ const SignupPage = () => {
         />
         <select name="role" onChange={handleChange} required>
           <option value="student">Student</option>
-          <option value="assistant">Assistant</option>
+          <option value="snagger">Snagger</option>
         </select>
         <button className="submit-button" type="submit">
           Create Account
