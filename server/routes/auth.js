@@ -76,7 +76,8 @@ router.get('/google/callback', passport.authenticate('google', {
     expiresIn: '7d',
   });
 
-  res.redirect(`https://snagged.dev/main?token=${token}&role=${req.user.role}`);
+  // Redirect back to the client with token in query string
+  res.redirect(`${CLIENT_URL}/main?token=${token}&role=${req.user.role}`);
 });
 
 // Forgot Password Route

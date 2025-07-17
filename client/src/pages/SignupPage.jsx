@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../App.css';
+import { API_BASE } from '../utils/api';
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -17,10 +18,9 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('form submitted');
 
     try {
-      const res = await fetch('https://snagged.onrender.com/api/auth/signup', {
+      const res = await fetch(`${API_BASE}/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -84,7 +84,7 @@ const SignupPage = () => {
       <button
         type="button"
         className="google-login-button"
-        onClick={() => window.location.href = 'https://snagged.onrender.com/api/auth/google'}
+        onClick={() => window.location.href = `${API_BASE}/auth/google`}
       >
         <img
           src="https://developers.google.com/identity/images/g-logo.png"

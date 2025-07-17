@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE } from '../utils/api';
 
 const ResetPasswordPage = () => {
   const { token } = useParams();
@@ -18,7 +19,7 @@ const ResetPasswordPage = () => {
     }
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/reset-password/${token}`, {
+      const res = await axios.post(`${API_BASE}/auth/reset-password/${token}`, {
         password,
       });
 

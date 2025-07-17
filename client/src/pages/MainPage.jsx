@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import { API_BASE } from '../utils/api';
 
 const MainPage = () => {
   const [role, setRole] = useState(null);
@@ -70,7 +71,7 @@ const SnaggerDashboard = () => {
     if (filters.campus) params.append('campus', filters.campus);
 
     try {
-      const res = await fetch(`https://snagged.onrender.com/api/tasks?${params.toString()}`, {
+      const res = await fetch(`${API_BASE}/tasks?${params.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -86,7 +87,7 @@ const SnaggerDashboard = () => {
   const handleFilter = (e) => { e.preventDefault(); fetchTasks(); };
 
   const claimTask = async (id) => {
-    await fetch(`https://snagged.onrender.com/api/tasks/${id}/claim`, {
+    await fetch(`${API_BASE}/tasks/${id}/claim`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${token}` },
     });
