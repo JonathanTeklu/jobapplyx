@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 5000;
 
 // CORS Configuration
 app.use(cors({
-  origin: 'https://snagged.dev', // ✅ No trailing slash
+  // Allow requests from the configured frontend URL
+  origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true,
 }));
 
