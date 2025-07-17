@@ -1,5 +1,5 @@
 // Editable user profile - merge conflicts resolved
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import defaultAvatar from '../assets/default-avatar.png';
 
@@ -48,13 +48,9 @@ const ProfilePage = () => {
     <div className="signup-container">
       <h2 className="signup-title">Profile Settings</h2>
       <form className="signup-form" onSubmit={handleSave}>
-        <div style={{ textAlign: 'center' }}>
-          <img
-            src={profilePic}
-            alt="Profile"
-            style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover' }}
-          />
-          <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginTop: '1rem' }} />
+        <div className="profile-image-container">
+          <img src={profilePic} alt="Profile" className="profile-avatar" />
+          <input type="file" accept="image/*" onChange={handleImageChange} className="file-input" />
         </div>
 
         <input
@@ -94,8 +90,8 @@ const ProfilePage = () => {
         <button type="button" className="primary-btn" onClick={handleResetPassword}>Reset Password</button>
         <button type="button" className="primary-btn" onClick={handleLogout}>Logout</button>
 
-        {message && <p style={{ color: 'green', textAlign: 'center' }}>{message}</p>}
-        <p style={{ textAlign: 'center', marginTop: '1rem' }}>⭐ 4.5/5 from 10 reviews</p>
+        {message && <p className="message-success">{message}</p>}
+        <p className="profile-rating">⭐ 4.5/5 from 10 reviews</p>
       </form>
     </div>
   );
