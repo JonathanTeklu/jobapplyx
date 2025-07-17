@@ -19,12 +19,13 @@ router.post('/', verifyToken, async (req, res) => {
 
 // get tasks with optional filters
 router.get('/', verifyToken, async (req, res) => {
-  const { minBudget, maxBudget, location, major } = req.query;
+  const { minBudget, maxBudget, location, major, campus } = req.query;
   const filter = { status: 'open' };
   if (minBudget) filter.budget = { ...filter.budget, $gte: Number(minBudget) };
   if (maxBudget) filter.budget = { ...filter.budget, $lte: Number(maxBudget) };
   if (location) filter.locationPreference = location;
-  if (major) filter.jobTypePreference = major;
+  if (major) filter.major = major;
+  if (campus) filter.campus = campus;
   try {
     const tasks = await Task.find(filter).populate('student', 'name');
     res.json(tasks);
