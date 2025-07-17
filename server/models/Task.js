@@ -1,3 +1,4 @@
+// Task schema - merge conflicts resolved
 const mongoose = require('mongoose');
 
 const taskSchema = new mongoose.Schema({
@@ -7,10 +8,13 @@ const taskSchema = new mongoose.Schema({
   resumeLink: { type: String, required: true },
   jobTypePreference: String,
   locationPreference: String,
+  campus: String,
+  major: String,
   deadline: Date,
   budget: { type: Number, required: true },
   status: { type: String, enum: ['open', 'claimed', 'completed'], default: 'open' },
   proofLink: String,
+  notes: String,
 }, { timestamps: true });
 
 module.exports = mongoose.model('Task', taskSchema);

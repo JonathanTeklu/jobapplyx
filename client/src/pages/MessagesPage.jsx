@@ -1,5 +1,5 @@
-// src/pages/MessagesPage.jsx
-import React, { useState, useEffect } from 'react';
+// Basic messaging UI - merge conflicts resolved
+import React, { useState, useEffect, useCallback } from 'react';
 
 const MessagesPage = () => {
   const [messages, setMessages] = useState([]);
@@ -7,7 +7,7 @@ const MessagesPage = () => {
   const [content, setContent] = useState('');
   const token = localStorage.getItem('token');
 
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     if (!to) return;
     try {
       const res = await fetch(`https://snagged.onrender.com/api/messages/${to}`, {
@@ -18,9 +18,11 @@ const MessagesPage = () => {
     } catch (err) {
       console.error('fetch messages error', err);
     }
-  };
+  }, [token, to]);
 
-  useEffect(() => { fetchMessages(); }, [to]);
+  useEffect(() => {
+    fetchMessages();
+  }, [fetchMessages]);
 
   const handleSend = async (e) => {
     e.preventDefault();

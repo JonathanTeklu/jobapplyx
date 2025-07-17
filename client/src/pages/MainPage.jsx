@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+// Dashboard with role-based views - conflicts resolved and merged
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MainPage.css';
 
@@ -58,14 +59,16 @@ const StudentDashboard = () => {
 
 const SnaggerDashboard = () => {
   const [tasks, setTasks] = useState([]);
-  const [filters, setFilters] = useState({ minBudget: '', location: '', major: '' });
+  const [filters, setFilters] = useState({ minBudget: '', location: '', major: '', campus: '' });
   const token = localStorage.getItem('token');
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     const params = new URLSearchParams();
     if (filters.minBudget) params.append('minBudget', filters.minBudget);
     if (filters.location) params.append('location', filters.location);
     if (filters.major) params.append('major', filters.major);
+    if (filters.campus) params.append('campus', filters.campus);
+
     try {
       const res = await fetch(`https://snagged.onrender.com/api/tasks?${params.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -75,9 +78,9 @@ const SnaggerDashboard = () => {
     } catch (err) {
       console.error('fetch tasks error', err);
     }
-  };
+  }, [filters, token]);
 
-  useEffect(() => { fetchTasks(); }, []);
+  useEffect(() => { fetchTasks(); }, [fetchTasks]);
 
   const handleChange = (e) => setFilters({ ...filters, [e.target.name]: e.target.value });
   const handleFilter = (e) => { e.preventDefault(); fetchTasks(); };
@@ -98,6 +101,7 @@ const SnaggerDashboard = () => {
           <input name="minBudget" type="number" placeholder="Min Budget" value={filters.minBudget} onChange={handleChange} />
           <input name="location" type="text" placeholder="Location" value={filters.location} onChange={handleChange} />
           <input name="major" type="text" placeholder="Major" value={filters.major} onChange={handleChange} />
+          <input name="campus" type="text" placeholder="Campus" value={filters.campus} onChange={handleChange} />
           <button className="primary-btn" type="submit">Apply</button>
         </form>
       </aside>

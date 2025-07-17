@@ -1,3 +1,4 @@
+// Student-only task creation form - merge conflicts resolved
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
@@ -8,11 +9,16 @@ const PostTaskPage = () => {
     resumeLink: '',
     jobTypePreference: '',
     locationPreference: '',
+    campus: '',
+    major: '',
     deadline: '',
     budget: '',
+    notes: '',
   });
+
   const navigate = useNavigate();
   const role = localStorage.getItem('role');
+
   if (role !== 'student') {
     return <div className="signup-container">Unauthorized</div>;
   }
@@ -79,10 +85,31 @@ const PostTaskPage = () => {
           onChange={handleChange}
         />
         <input
+          type="text"
+          name="campus"
+          placeholder="Campus"
+          value={formData.campus}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="major"
+          placeholder="Major"
+          value={formData.major}
+          onChange={handleChange}
+        />
+        <input
           type="date"
           name="deadline"
           value={formData.deadline}
           onChange={handleChange}
+        />
+        <textarea
+          name="notes"
+          placeholder="Additional notes"
+          value={formData.notes}
+          onChange={handleChange}
+          rows="3"
         />
         <input
           type="number"

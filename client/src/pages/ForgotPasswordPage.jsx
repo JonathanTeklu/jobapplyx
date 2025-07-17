@@ -14,7 +14,7 @@ const ForgotPasswordPage = () => {
         email,
       });
       setMessage(res.data.message || 'Reset email sent if user exists.');
-    } catch (err) {
+    } catch {
       setMessage('Something went wrong.');
     }
   };
